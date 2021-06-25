@@ -2,6 +2,7 @@ module github.com/sspinc/terraform-provider-credstash
 
 require (
 	github.com/aws/aws-sdk-go v1.34.5
+	github.com/hashicorp/aws-sdk-go-base v0.5.0
 	github.com/hashicorp/terraform v0.13.0
 )
 

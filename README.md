@@ -71,6 +71,18 @@ provider "credstash" {
 }
 ```
 
+You can set a specific role arn:
+
+```hcl
+provider "credstash" {
+    region  = "us-east-1"
+    assume_role {
+        role_arn         = "arn:aws:iam::<acccount>:<role name>
+        duration_seconds = 600
+    }
+}
+```
+
 ## Development
 
 For dependency management Go modules are used thus you will need go 1.11+
