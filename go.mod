@@ -6,4 +6,4 @@ require (
 	github.com/hashicorp/terraform v0.13.0
 )
 
-go 1.14
+go 1.21
