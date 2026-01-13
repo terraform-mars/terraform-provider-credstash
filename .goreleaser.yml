@@ -4,6 +4,16 @@ before:
   hooks:
     - go mod tidy
     - go mod download
+    - mkdir -p dist
+    - |
+      cat > dist/terraform-provider-credstash_{{ .Version }}_manifest.json << 'EOF'
+      {
+        "version": 1,
+        "metadata": {
+          "protocol_versions": ["5.0"]
+        }
+      }
+      EOF
 
 builds:
   - env:
@@ -26,7 +36,8 @@ builds:
     binary: '{{ .ProjectName }}_v{{ .Version }}'
 
 archives:
-  - format: zip
+  - formats:
+      - zip
     name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
 
 checksum:
@@ -46,6 +57,8 @@ signs:
 
 release:
   draft: false
+  extra_files:
+    - glob: dist/terraform-provider-credstash_*_manifest.json
 
 changelog:
   disable: false
