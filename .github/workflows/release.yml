@@ -37,11 +37,3 @@ jobs:
         env:
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload Terraform Registry manifest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
-          echo '{"version":1,"metadata":{"protocol_versions":["5.0"]}}' > terraform-provider-credstash_${VERSION}_manifest.json
-          gh release upload v${VERSION} terraform-provider-credstash_${VERSION}_manifest.json
